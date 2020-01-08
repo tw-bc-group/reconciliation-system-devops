@@ -27,8 +27,24 @@ module "redis_instance" {
   }
 }
 
-resource "null_resource" "setup_redis" {
+resource "null_resource" "copy_shell_script" {
   depends_on = [module.redis_instance]
+
+  provisioner "file" {
+    source      = "terraformProvisionRedisUsingDocker.sh"
+    destination = "/var/tmp/terraformProvisionRedisUsingDocker.sh"
+
+    connection {
+      type = "ssh"
+      user = "ubuntu"
+      host = module.redis_instance.public_ip
+      private_key = module.key_pair.private_key
+    }
+  }
+}
+
+resource "null_resource" "setup_redis" {
+  depends_on = [null_resource.copy_shell_script]
 
   provisioner "remote-exec" {
     connection {
@@ -38,7 +54,9 @@ resource "null_resource" "setup_redis" {
       private_key = module.key_pair.private_key
     }
 
-    script = "terraformProvisionRedisUsingDocker.sh"
-
+    inline = [
+      "chmod +x /var/tmp/terraformProvisionRedisUsingDocker.sh",
+      "/var/tmp/terraformProvisionRedisUsingDocker.sh"
+    ]
   }
 }

@@ -10,7 +10,7 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 sudo apt-get -qq update
 
 # Install Docker
-sudo apt-get -qq install -y docker-ce
+#sudo apt-get -qq install -y docker-ce
 
 echo "Start the redis server"
 sudo docker network create -d bridge mynetwork
