@@ -19,47 +19,32 @@ module "security_group" {
   vpc_id = "${module.vpc.vpc_id}"
 }
 
-resource "aws_instance" "ci" {
-  ami             = "${lookup(var.amis, var.region)}"
-  instance_type   = "t2.micro"
-  key_name        = "${module.key_pair.key_name}"
+module "ci_instance" {
+  source = "./modules/ec2-instance"
+  instance_name = "ci_instance"
+  instance_type = "t2.micro"
 
-  vpc_security_group_ids = ["${module.security_group.id}"]
+  region = "${var.region}"
+
+  key_name = "${module.key_pair.key_name}"
+  private_key = "${module.key_pair.private_key}"
+
+  security_group_id = "${module.security_group.id}"
   subnet_id = "${element(module.vpc.public_subnet_ids, 0)}"
 
-  connection {
-      type = "ssh"
-      user = "ubuntu"
-      private_key = "${module.key_pair.private_key}"
-  }
-
-  provisioner "remote-exec" {
-    inline = [
-      "/bin/bash -c 'sudo apt-get update'",
-      "/bin/bash -c 'sudo apt -y install docker.io'",
-
-      "/bin/bash -c 'sudo service docker start'",
-      "/bin/bash -c 'sudo groupadd docker'",
-      "/bin/bash -c 'sudo usermod -a -G docker ubuntu'",
-      "/bin/bash -c 'sudo systemctl restart docker'",
-      "/bin/bash -c 'sudo chmod a+rw /var/run/docker.sock'",
-    ]
-  }
-
-  tags = {
-    name          = "${var.prefix}-jenkins"
+  default_tags = {
     "Cost Center" = "${var.prefix}"
   }
 }
 
 resource "null_resource" "setup_jenkins" {
-  depends_on = ["aws_instance.ci"]
+  depends_on = ["module.ci_instance"]
 
   provisioner "remote-exec" {
     connection {
       type = "ssh"
       user = "ubuntu"
-      host = "${aws_instance.ci.public_ip}"
+      host = "${module.ci_instance.public_ip}"
       private_key = "${module.key_pair.private_key}"
     }
 

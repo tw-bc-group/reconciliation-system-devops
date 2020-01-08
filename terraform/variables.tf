@@ -14,15 +14,6 @@ variable "prefix" {
   default = "reconciliation"
 }
 
-variable "amis" {
-  type = "map"
-
-  default = {
-    "us-east-1"  = "ami-b374d5a5"
-    "us-west-2"  = "ami-4b32be2b"
-    "cn-northwest-1" = "ami-09081e8e3d61f4b9e"
-  }
-}
 
 variable "jenkins_vpc_name" {
   default = "jenkins"
