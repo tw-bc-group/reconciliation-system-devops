@@ -1,14 +1,3 @@
-module "redis_key_pair" {
-  source = "./modules/generate-key-pair"
-  key_name = "redis"
-}
-
-module "redis_security_group" {
-  source = "./modules/security-group"
-  group_name = "redis_security_group"
-  vpc_id = module.vpc.vpc_id
-}
-
 module "redis_instance" {
   source = "./modules/ec2-instance"
   instance_name = "redis_instance"

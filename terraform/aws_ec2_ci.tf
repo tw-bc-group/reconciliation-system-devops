@@ -1,6 +1,6 @@
 module "key_pair" {
   source = "./modules/generate-key-pair"
-  key_name = "jenkins"
+  key_name = "reconciliation_key"
 }
 
 module "vpc" {
