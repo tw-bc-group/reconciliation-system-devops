@@ -1,9 +1,9 @@
 variable "access_key" {
-  type = "string"
+  type = string
 }
 
 variable "secret_key" {
-  type = "string"
+  type = string
 }
 
 variable "region" {
@@ -21,7 +21,7 @@ variable "jenkins_vpc_name" {
 
 variable "azs" {
   default = ["cn-northwest-1a", "cn-northwest-1b", "cn-northwest-1c"]
-  type    = "list"
+  type    = list
 }
 
 variable "env" {
@@ -38,14 +38,14 @@ variable "aws_vpc_cidr_block" {
 }
 variable "aws_cidr_subnets_private" {
   description = "CIDR Blocks for private subnets in Availability Zones"
-  type        = "list"
+  type        = list
 }
 variable "aws_cidr_subnets_public" {
   description = "CIDR Blocks for public subnets in Availability Zones"
-  type        = "list"
+  type        = list
 }
 
 variable "default_tags" {
   description = "Default tags for all resources"
-  type        = "map"
+  type        = map
 }

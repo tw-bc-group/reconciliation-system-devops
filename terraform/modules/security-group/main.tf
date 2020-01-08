@@ -1,7 +1,7 @@
 resource "aws_security_group" "security_group" {
-  name   = "${var.group_name}"
+  name   = var.group_name
 
-  vpc_id = "${var.vpc_id}"
+  vpc_id = var.vpc_id
 
   ingress {
     cidr_blocks = [

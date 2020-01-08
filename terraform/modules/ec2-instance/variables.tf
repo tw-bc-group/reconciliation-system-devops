@@ -1,5 +1,5 @@
 variable "amis" {
-  type = "map"
+  type = map
 
   default = {
     "us-east-1" = "ami-b374d5a5"
@@ -10,40 +10,40 @@ variable "amis" {
 
 variable "region" {
   default = "cn-northwest-1"
-  type = "string"
+  type = string
 }
 
 variable "key_name" {
   description = "The name of the key pair."
-  type = "string"
+  type = string
 }
 
 variable "private_key" {
   description = "private key of key pair."
-  type = "string"
+  type = string
 }
 
 variable "security_group_id" {
   description = "The ID of security group."
-  type = "string"
+  type = string
 }
 
 variable "subnet_id" {
   description = "The id of subnet of ec2 instance."
-  type = "string"
+  type = string
 }
 
 variable "default_tags" {
   description = "Default tags for ec2 instace"
-  type = "map"
+  type = map
 }
 
 variable "instance_name" {
   default = "Name of the instance."
-  type = "string"
+  type = string
 }
 
 variable "instance_type" {
   default = "Type of instance."
-  type = "string"
+  type = string
 }
