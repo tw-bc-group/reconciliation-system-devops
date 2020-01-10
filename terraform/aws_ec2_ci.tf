@@ -50,7 +50,13 @@ resource "null_resource" "setup_jenkins" {
     }
 
     inline = [
-      "docker run --name jenkins -p 9000:8080 -p 50000:50000 -d jenkins"
+      "sudo apt install default-jre -y",
+      "wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -",
+      "sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'",
+      "sudo apt-get update",
+      "sudo apt-get install jenkins -y",
+      "sudo sed -i 's/HTTP_PORT=8080/HTTP_PORT=9000/g' /etc/default/jenkins",
+      "sudo systemctl restart jenkins.service"
     ]
   }
 }
