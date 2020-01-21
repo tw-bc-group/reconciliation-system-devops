@@ -1,6 +1,6 @@
 module "key_pair" {
   source = "./modules/generate-key-pair"
-  key_name = "reconciliation_key"
+  key_name = "reconciliation_ci_key"
 }
 
 module "vpc" {
@@ -15,14 +15,14 @@ module "vpc" {
 
 module "security_group" {
   source = "./modules/security-group"
-  group_name = "reconciliation_security_group"
+  group_name = "reconciliation_ci_security_group"
   vpc_id = module.vpc.vpc_id
 }
 
 module "ci_instance" {
   source = "./modules/ec2-instance"
-  instance_name = "ci_instance"
-  instance_type = "t2.micro"
+  instance_name = "new_ci_instance"
+  instance_type = "t2.small"
 
   region = var.region
 
