@@ -9,7 +9,7 @@ services:
     expose:
       - 12306
     volumes:
-      - ~/data/mock/bridge-http:/moco/config
+      - ./mock/bridge-http:/moco/config
     networks: 
       - default
 
@@ -18,7 +18,7 @@ services:
     expose:
       - 3306
     volumes:
-      - ~/data/mock/payment-mysql:/docker-entrypoint-initdb.d
+      - ./mock/payment-mysql:/docker-entrypoint-initdb.d
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=origin_data
