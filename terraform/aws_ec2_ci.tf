@@ -56,7 +56,8 @@ resource "null_resource" "setup_jenkins" {
       "sudo apt-get update",
       "sudo apt-get install jenkins -y",
       "sudo sed -i 's/HTTP_PORT=8080/HTTP_PORT=9000/g' /etc/default/jenkins",
-      "sudo systemctl restart jenkins.service"
+      "sudo systemctl restart jenkins.service",
+      "docker run -d -p 5000:5000 --name registry registry:2"
     ]
   }
 }
