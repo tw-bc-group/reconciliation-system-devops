@@ -58,11 +58,6 @@ variable "aws_cidr_subnets_public" {
   type        = list
 }
 
-variable "default_tags" {
-  description = "Default tags for all resources"
-  type        = map
-}
-
 // CI Instance
 variable "ci_instance_name" {
   description = "Instance name for CI server."
