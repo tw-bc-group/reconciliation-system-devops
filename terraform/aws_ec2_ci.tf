@@ -61,3 +61,8 @@ resource "null_resource" "setup_jenkins" {
     ]
   }
 }
+
+output "ci_instance_ip_addr" {
+  value = module.ci_instance.public_ip
+  description = "The public IP address of CI server instance. (To access the page, you should addon the port you specify.)"
+}
