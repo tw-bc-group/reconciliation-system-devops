@@ -9,8 +9,10 @@
 
 ### Prepare
 
-* Copy `secret.auto.tfvars.example` to `secret.auto.tfvars`, and fill in the blank of `access_key` and `secret_key` from AWS account credential.
-* Copy `terraform.tfvars.example` to `terraform.tfvars`, and fill in the value of each properties.
+* Copy `secret.auto.tfvars.example` to `secret.auto.tfvars` in terraform folder, and fill in the blank of `access_key` and `secret_key` from AWS account credential.
+* Copy `terraform.tfvars.example` to `terraform.tfvars` in terraform folder, and fill in the value of each properties.
+
+* Use `terraform init` to initialize the module we use.
 * Before execute the script, you can use `terraform plan` to verify the code and see what will happen when you execute the script.
 
 ### Create instance
