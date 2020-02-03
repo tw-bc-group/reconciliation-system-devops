@@ -4,7 +4,13 @@
 
 ### Install terraform
 
-Follow terraform installation docs.
+* Follow terraform [installation docs](https://www.terraform.io/downloads.html).
+* You can use `terraform version` to verify whether you had install successfully. [The version should more than 0.12.18]
+
+### Prepare
+* Copy `secret.auto.tfvars.example` to `secret.auto.tfvars`, and fill in the blank of `access_key` and `secret_key` from AWS account credential.
+* Copy `terraform.tfvars.example` to `terraform.tfvars`, and fill in the value of each properties.
+* Before execute the script, you can use `terraform plan` to verify the code and see what will happen when you execute the script.
 
 ### Create instance
 
