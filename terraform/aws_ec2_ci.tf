@@ -1,12 +1,12 @@
 module "key_pair" {
   source = "./modules/generate-key-pair"
-  key_name = "reconciliation_ci_key"
+  key_name = var.ec2_instance_key_name
 }
 
 module "vpc" {
   source = "./modules/vpc"
   cidr_block = var.aws_vpc_cidr_block
-  name = "reconciliation_vpc"
+  name = var.vpc_name
   public_subnet_cidr_blocks = [
     cidrsubnet(var.aws_vpc_cidr_block, 8, 0),
     cidrsubnet(var.aws_vpc_cidr_block, 8, 1)]
@@ -15,14 +15,15 @@ module "vpc" {
 
 module "security_group" {
   source = "./modules/security-group"
-  group_name = "reconciliation_ci_security_group"
+  group_name = var.security_group_name
   vpc_id = module.vpc.vpc_id
+  ci_instance_port = var.ci_instance_port
 }
 
 module "ci_instance" {
   source = "./modules/ec2-instance"
-  instance_name = "new_ci_instance"
-  instance_type = "t2.small"
+  instance_name = var.ci_instance_name
+  instance_type = var.ci_instance_type
 
   region = var.region
 

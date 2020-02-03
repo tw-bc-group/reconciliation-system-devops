@@ -1,6 +1,21 @@
-#VPC Vars
-aws_vpc_cidr_block = ""
-aws_cidr_subnets_private = []
-aws_cidr_subnets_public = []
+# VPC Vars
+aws_vpc_cidr_block = "10.250.192.0/18"
+aws_cidr_subnets_private = ["10.250.192.0/20","10.250.208.0/20"]
+aws_cidr_subnets_public = ["10.250.224.0/20","10.250.240.0/20"]
+
+prefix = ""
+vpc_name = ""
+
+security_group_name = ""
+
+# EC2
+# Region fo EC2 instance [options], default value: "cn-northwest-1"
+region = "cn-northwest-1"
+ec2_instance_key_name = ""
+
+# CI Vars
+ci_instance_name = ""
+ci_instance_type = "" # default: "t2.small"
+ci_instance_port =    # please input a number
 
 default_tags = {}

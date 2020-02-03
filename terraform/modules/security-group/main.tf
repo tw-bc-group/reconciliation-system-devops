@@ -12,12 +12,13 @@ resource "aws_security_group" "security_group" {
     protocol  = "tcp"
   }
 
+  # CI
   ingress {
     cidr_blocks = [
       "0.0.0.0/0"
     ]
-    from_port = 8001
-    to_port   = 8001
+    from_port = var.ci_instance_port
+    to_port   = var.ci_instance_port
     protocol  = "tcp"
   }
 

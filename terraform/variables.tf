@@ -6,14 +6,27 @@ variable "secret_key" {
   type = string
 }
 
+variable "vpc_name" {
+  type = string
+}
+
 variable "region" {
-  default = "cn-northwest-1"
+  description = "The region for EC2 instance."
+  type = string
+}
+
+variable "ec2_instance_key_name" {
+  description = "The key to access ec2 instance."
+  type = string
+}
+
+variable "security_group_name" {
+  type = string
 }
 
 variable "prefix" {
-  default = "reconciliation"
+  type = string
 }
-
 
 variable "jenkins_vpc_name" {
   default = "jenkins"
@@ -48,4 +61,20 @@ variable "aws_cidr_subnets_public" {
 variable "default_tags" {
   description = "Default tags for all resources"
   type        = map
+}
+
+// CI Instance
+variable "ci_instance_name" {
+  description = "Instance name for CI server."
+  type = string
+}
+
+variable "ci_instance_type" {
+  default = "t2.small"
+  type = string
+}
+
+variable "ci_instance_port" {
+  type = number
+  description = "Port for CI instance."
 }

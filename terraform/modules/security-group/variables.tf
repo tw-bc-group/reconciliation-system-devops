@@ -5,3 +5,8 @@ variable "group_name" {
 variable "vpc_id" {
     type = string
 }
+
+variable "ci_instance_port" {
+    type = number
+    description = "Port for CI instance."
+}
