@@ -18,4 +18,4 @@ ec2_instance_key_name = "" # The key to access ec2 instance.
 ci_instance_name = ""
 ci_instance_type = "" # default: "t2.small"
 ci_instance_port =    # please input a number
-volume_size      =    # please input a number, in GB unit.
+# volume_size    =    # If you want to change volume size of root block size, please uncomment this line and input a number in GB unit.
