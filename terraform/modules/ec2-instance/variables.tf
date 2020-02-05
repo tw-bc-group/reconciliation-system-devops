@@ -13,6 +13,17 @@ variable "region" {
   type = string
 }
 
+variable "availability_zone" {
+  default = "cn-northwest-1a"
+  type = string
+}
+
+variable "volume_size" {
+  default = 8
+  type = number
+  description = "Volume size for root block device."
+}
+
 variable "key_name" {
   description = "The name of the key pair."
   type = string

@@ -6,6 +6,10 @@ resource "aws_instance" "ec2-instance" {
   vpc_security_group_ids = [var.security_group_id]
   subnet_id = var.subnet_id
 
+  root_block_device {
+    volume_size       = var.volume_size
+  }
+
   connection {
     type = "ssh"
     user = "ubuntu"

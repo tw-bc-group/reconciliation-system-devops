@@ -26,6 +26,7 @@ module "ci_instance" {
   instance_type = var.ci_instance_type
 
   region = var.region
+  volume_size = var.volume_size
 
   key_name = module.key_pair.key_name
   private_key = module.key_pair.private_key

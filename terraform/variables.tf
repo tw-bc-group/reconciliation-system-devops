@@ -73,3 +73,8 @@ variable "ci_instance_port" {
   type = number
   description = "Port for CI instance."
 }
+
+variable "volume_size" {
+  type = number
+  description = "Volume size for root block device."
+}
