@@ -21,7 +21,7 @@ variable "availability_zone" {
 variable "volume_size" {
   default = 8
   type = number
-  description = "Volume size for root block device."
+  description = "Volume size for root block device. (Unit: GB)"
 }
 
 variable "key_name" {

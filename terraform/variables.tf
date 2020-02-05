@@ -76,5 +76,5 @@ variable "ci_instance_port" {
 
 variable "volume_size" {
   type = number
-  description = "Volume size for root block device."
+  description = "Volume size for root block device. (Unit: GB)"
 }
