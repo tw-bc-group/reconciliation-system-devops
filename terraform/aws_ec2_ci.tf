@@ -39,9 +39,24 @@ module "ci_instance" {
   }
 }
 
+resource "null_resource" "change_sources_list" {
+  depends_on = [module.ci_instance]
+
+  provisioner "file" {
+    source = "sources.list"
+    destination = "/var/tmp/sources.list"
+
+    connection {
+      type = "ssh"
+      user = "ubuntu"
+      host = module.ci_instance.public_ip
+      private_key = module.key_pair.private_key
+    }
+  }
+}
+
 resource "null_resource" "copy_install_jenkins_shell_script" {
-  depends_on = [
-    module.ci_instance]
+  depends_on = [null_resource.change_sources_list]
 
   provisioner "file" {
     source = "installJenkins.sh"
@@ -70,6 +85,7 @@ resource "null_resource" "install_Jenkins" {
 
     inline = [
       "chmod +x /var/tmp/installJenkins.sh",
+      "sudo cp /var/tmp/sources.list /etc/apt/sources.list",
       "/var/tmp/installJenkins.sh ${tostring(var.ci_instance_port)}"
     ]
   }
