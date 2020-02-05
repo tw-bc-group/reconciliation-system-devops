@@ -39,3 +39,8 @@ terraform destroy
 ```
 
 This script will destroy every resource that you created by using `terraform apply`.
+
+> Notice: <br/> 
+> The files in folder `terraform/redis_backup` are using to create an EC2 instance with Redis installed. <br/>
+> If you need it, please move the file under `terraform/redis_backup` to `terraform` folder. <br/>
+> Then you can see these resources when you execute `terraform plan`.
