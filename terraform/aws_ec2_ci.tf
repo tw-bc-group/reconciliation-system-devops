@@ -38,9 +38,26 @@ module "ci_instance" {
   }
 }
 
-resource "null_resource" "setup_jenkins" {
+resource "null_resource" "copy_install_jenkins_shell_script" {
   depends_on = [
     module.ci_instance]
+
+  provisioner "file" {
+    source = "installJenkins.sh"
+    destination = "/var/tmp/installJenkins.sh"
+
+    connection {
+      type = "ssh"
+      user = "ubuntu"
+      host = module.ci_instance.public_ip
+      private_key = module.key_pair.private_key
+    }
+  }
+}
+
+resource "null_resource" "install_Jenkins" {
+  depends_on = [
+    null_resource.copy_install_jenkins_shell_script]
 
   provisioner "remote-exec" {
     connection {
@@ -51,14 +68,8 @@ resource "null_resource" "setup_jenkins" {
     }
 
     inline = [
-      "sudo apt install default-jre -y",
-      "wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -",
-      "sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'",
-      "sudo apt-get update",
-      "sudo apt-get install jenkins -y",
-      "sudo sed -i 's/HTTP_PORT=8080/HTTP_PORT=${tostring(var.ci_instance_port)}/g' /etc/default/jenkins",
-      "sudo systemctl restart jenkins.service",
-      "docker run -d -p 5000:5000 --name registry registry:2"
+      "chmod +x /var/tmp/installJenkins.sh",
+      "/var/tmp/installJenkins.sh ${tostring(var.ci_instance_port)}"
     ]
   }
 }
