@@ -24,6 +24,7 @@ module "ci_instance" {
   source = "./modules/ec2-instance"
   instance_name = var.ci_instance_name
   instance_type = var.ci_instance_type
+  amis = var.amis
 
   region = var.region
   volume_size = var.volume_size

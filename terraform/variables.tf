@@ -15,6 +15,18 @@ variable "region" {
   type = string
 }
 
+variable "amis" {
+  type = map
+  description = "The region-ami map for AWS EC2."
+
+  default = {
+    "us-east-1" = "ami-b374d5a5"
+    "us-west-1" = "ami-094f0176b0d009d9f"
+    "us-east-2" = "ami-08cec7c429219e339"
+    "cn-northwest-1" = "ami-09081e8e3d61f4b9e"
+  }
+}
+
 variable "ec2_instance_key_name" {
   description = "The key to access ec2 instance."
   type = string

@@ -9,6 +9,9 @@
 
 ### Prepare
 
+> Check to see whether the region you are using is in the `amis` list, The setting is located at `terraform/variables.tf` file's `amis` default value.
+> If not, you can go to page `https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html` to find a ami in your region, and add that below the `amis` default value at `terraform/variables.tf`.
+
 * Make sure you are in the `terraform` folder.
 * Copy `secret.auto.tfvars.example` to `secret.auto.tfvars` in terraform folder, and fill in the blank of `access_key` and `secret_key` from AWS account credential.
 * Copy `terraform.tfvars.example` to `terraform.tfvars` in terraform folder, and fill in the value of each properties.
