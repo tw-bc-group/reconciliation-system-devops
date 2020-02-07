@@ -33,7 +33,7 @@ variable "jenkins_vpc_name" {
 }
 
 variable "azs" {
-  default = ["cn-northwest-1a", "cn-northwest-1b", "cn-northwest-1c"]
+  default = ["us-west-1a", "us-west-1c"]
   type    = list
 }
 

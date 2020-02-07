@@ -27,6 +27,8 @@ resource "aws_instance" "ec2-instance" {
       "/bin/bash -c 'sudo usermod -a -G docker ubuntu'",
       "/bin/bash -c 'sudo systemctl restart docker'",
       "/bin/bash -c 'sudo chmod a+rw /var/run/docker.sock'",
+      "/bin/bash -c 'sudo curl -L \"https://github.com/docker/compose/releases/download/1.25.3/docker-compose-$(uname -s)-$(uname -m)\" -o /usr/local/bin/docker-compose'",
+      "/bin/bash -c 'sudo chmod +x /usr/local/bin/docker-compose'",
     ]
   }
 

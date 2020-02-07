@@ -3,18 +3,13 @@ variable "amis" {
 
   default = {
     "us-east-1" = "ami-b374d5a5"
-    "us-west-2" = "ami-4b32be2b"
+    "us-west-1" = "ami-094f0176b0d009d9f"
+    "us-east-2" = "ami-08cec7c429219e339"
     "cn-northwest-1" = "ami-09081e8e3d61f4b9e"
   }
 }
 
 variable "region" {
-  default = "cn-northwest-1"
-  type = string
-}
-
-variable "availability_zone" {
-  default = "cn-northwest-1a"
   type = string
 }
 

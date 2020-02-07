@@ -6,9 +6,11 @@ wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
 sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
 
 sudo apt-get update
+sudo apt update
 
-sudo apt install default-jre -y
+sudo apt-get install openjdk-8-jdk -y
 sudo apt-get install jenkins -y
+sudo apt install make
 
 # Change the http port that Jenkins use, default is 8080.
 sudo sed -i "s/HTTP_PORT=8080/HTTP_PORT=${http_port}/g" /etc/default/jenkins
