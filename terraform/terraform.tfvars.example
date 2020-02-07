@@ -11,11 +11,12 @@ vpc_name = ""
 security_group_name = ""
 
 # EC2
-region = "cn-northwest-1" # default value: "cn-northwest-1"
+region = "us-west-1" # default value: "us-west-1", if you are not in this region, please change it.
+azs = ["us-west-1a", "us-west-1c"] # Please input a String list of availability zones of the region you specify above.
 ec2_instance_key_name = "" # The key to access ec2 instance.
 
 # CI Vars
 ci_instance_name = ""
-ci_instance_type = "" # default: "t2.small"
-ci_instance_port =    # please input a number
+ci_instance_type = "" # Default: "t2.small"
+ci_instance_port =    # Please input a number
 # volume_size    =    # If you want to change volume size of root block size, please uncomment this line and input a number in GB unit.

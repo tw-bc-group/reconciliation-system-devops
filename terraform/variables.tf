@@ -12,7 +12,14 @@ variable "vpc_name" {
 
 variable "region" {
   description = "The region for EC2 instance."
+  default = "us-west-1"
   type = string
+}
+
+variable "azs" {
+  description = "Availability zones of the region."
+  type    = list
+  default = ["us-west-1a", "us-west-1c"]
 }
 
 variable "amis" {
@@ -42,11 +49,6 @@ variable "prefix" {
 
 variable "jenkins_vpc_name" {
   default = "jenkins"
-}
-
-variable "azs" {
-  default = ["us-west-1a", "us-west-1c"]
-  type    = list
 }
 
 variable "env" {
