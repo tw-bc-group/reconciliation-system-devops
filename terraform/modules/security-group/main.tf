@@ -22,6 +22,16 @@ resource "aws_security_group" "security_group" {
     protocol  = "tcp"
   }
 
+  # For reconciliation-plugin service
+  ingress {
+    cidr_blocks = [
+      "0.0.0.0/0"
+    ]
+    from_port = 8002
+    to_port   = 8002
+    protocol  = "tcp"
+  }
+
   ingress {
     cidr_blocks = [
       "0.0.0.0/0"

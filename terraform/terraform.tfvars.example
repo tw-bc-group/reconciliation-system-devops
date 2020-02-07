@@ -18,5 +18,5 @@ ec2_instance_key_name = "" # The key to access ec2 instance.
 # CI Vars
 ci_instance_name = ""
 ci_instance_type = "" # Default: "t2.small"
-ci_instance_port =    # Please input a number
+ci_instance_port =    # Please input a number except 8002. The port 8002 is used for reconciliation-plugin service.
 # volume_size    =    # If you want to change volume size of root block size, please uncomment this line and input a number in GB unit.
