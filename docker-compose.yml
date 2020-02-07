@@ -81,13 +81,13 @@ services:
     environment:
       - RUST_LOG=demo=debug,actix_web=info
       - HTTP_ADDRESS=0.0.0.0
-      - HTTP_PORT=8001
+      - HTTP_PORT=8002
       - HTTP_LOADER_URL=http://loader:8081
       - PLUGIN_DIR=plugin
     expose: 
-      - 8001
+      - 8002
     ports:
-      - 8001:8001
+      - 8002:8002
     logging:
       driver: "json-file"
     depends_on:
