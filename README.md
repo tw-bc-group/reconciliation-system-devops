@@ -47,3 +47,31 @@ This script will destroy every resource that you created by using `terraform app
 > The files in folder `terraform/redis_backup` are using to create an EC2 instance with Redis installed. <br/>
 > If you need it, please move the file under `terraform/redis_backup` to `terraform` folder. <br/>
 > Then you can see these resources when you execute `terraform plan`.
+
+## Deployment
+
+### Config Jenkins
+> Please add a credentials first at jenkins, in order to clone the code. 
+* Config pipeline `statement-loader` at `git@github.com:tw-bc-group/statement-loader.git` with jenkins file at `Jenkinsfile.groovy`.
+* Config pipeline `reconciliation-system` at `git@github.com:tw-bc-group/reconciliation-system.git` with jenkins file at `Jenkinsfile.groovy`.
+* Config pipeline `reconciliation-system-devops` at `git@github.com:tw-bc-group/reconciliation-system-devops.git` with jenkins file at `Jenkinsfile.groovy`.
+* If both these three pipeline build successful, you can verify it as follow shows.
+
+### Verify Reconciliation
+1. Post: `http://{ci-ip-address}:8002/reconciliation`
+    * Body: 
+    ```
+    {
+     "start": 1576476000000, # in millisecond
+     "end": 1576540800000 # in millisecond
+    }
+    ```
+   * Response:
+   ```
+   {
+       "id": "20191216-20191217-1581049017720"
+   }
+   ```
+2. GET `http://{ci-ip-address}:8002/reconciliation/20191216-20191217-158104901772` # this is from the response above.
+
+   If you can download a Excel file, That means your deployment is successful!
